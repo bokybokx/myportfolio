@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — BOKY</title>
+  <meta name="description" content="BOKY is a personal brand for a developer, educator, designer and technology enthusiast.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+
+/* ==========================================================
+   BOKY — style.css
+   Edit the palette in :root to re-theme the whole site.
+   ========================================================== */
+:root {
+  --bg: #050505;
+  --card: #0d0d0d;
+  --surface: #151515;
+  --pink: #ff1493;
+  --pink-2: #ff4fa3;
+  --pink-3: #ff8ac5;
+  --pink-4: #ffd1e6;
+  --text: #ffffff;
+  --muted: #a0a0a0;
+  --line: rgba(255, 79, 163, .22);
+  --grad: linear-gradient(135deg, #ff1493, #ff8ac5);
+  --glow: 0 0 32px rgba(255, 20, 147, .35);
+  --font: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --body: "Inter", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--body); line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+:focus-visible { outline: 2px solid var(--pink-3); outline-offset: 3px; }
+
+.container { width: min(1160px, 92%); margin-inline: auto; }
+.section { padding: clamp(72px, 10vw, 130px) 0; }
+
+h1, h2, h3, .logo { font-family: var(--font); line-height: 1.1; }
+h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: -.02em; margin-bottom: 2rem; }
+h3 { font-size: 1.15rem; margin-bottom: .35rem; }
+p { color: var(--muted); max-width: 62ch; }
+p + p { margin-top: 1rem; }
+.lead { font-size: 1.1rem; }
+
+/* ---------- Navigation ---------- */
+.nav {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+  width: min(1160px, 94%); z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px; border-radius: 999px;
+  background: rgba(13, 13, 13, .55);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
+  transition: background .3s, box-shadow .3s;
+}
+.nav.scrolled { background: rgba(5, 5, 5, .8); box-shadow: 0 8px 40px rgba(255, 20, 147, .12); }
+.logo { font-weight: 700; font-size: 1.4rem; letter-spacing: .18em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+nav { display: flex; gap: 6px; }
+nav a {
+  position: relative; padding: 8px 14px; font-size: .92rem; color: var(--muted);
+  border-radius: 999px; transition: color .25s, background .25s;
+}
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--text); background: rgba(255, 20, 147, .16); box-shadow: inset 0 0 0 1px var(--line); }
+.burger { display: none; background: none; border: 0; width: 44px; height: 44px; cursor: pointer; position: relative; }
+.burger span { position: absolute; left: 10px; right: 10px; height: 2px; background: var(--pink-3); transition: transform .3s, top .3s; }
+.burger span:first-child { top: 17px; } .burger span:last-child { top: 25px; }
+.burger[aria-expanded="true"] span:first-child { top: 21px; transform: rotate(45deg); }
+.burger[aria-expanded="true"] span:last-child { top: 21px; transform: rotate(-45deg); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 0 28px; border-radius: 999px; border: 1px solid transparent;
+  font: 500 .98rem var(--font); cursor: pointer; transition: transform .25s, box-shadow .25s, background .25s, border-color .25s;
+}
+.btn-primary { background: var(--grad); color: #080808; box-shadow: var(--glow); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 48px rgba(255, 20, 147, .55); }
+.btn-ghost { border-color: var(--line); color: var(--pink-4); background: rgba(255, 255, 255, .02); }
+.btn-ghost:hover { border-color: var(--pink-2); background: rgba(255, 20, 147, .12); transform: translateY(-3px); }
+.btn.sm { min-height: 40px; padding: 0 20px; font-size: .88rem; }
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 100svh; display: flex; align-items: center; padding-top: 90px; position: relative;
+  background:
+    radial-gradient(ellipse at 75% 40%, rgba(255, 20, 147, .20), transparent 55%),
+    radial-gradient(ellipse at 10% 90%, rgba(255, 138, 197, .08), transparent 50%),
+    var(--bg);
+  background-size: 140% 140%; animation: bgshift 18s ease-in-out infinite alternate;
+}
+@keyframes bgshift { to { background-position: 30% 20%; } }
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; }
+.wordmark {
+  font-size: clamp(5rem, 17vw, 12.5rem); font-weight: 700; letter-spacing: -.04em; line-height: .9;
+  background: linear-gradient(135deg, #fff 0%, var(--pink-3) 45%, var(--pink) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 40px rgba(255, 20, 147, .35));
+}
+.subtitle { margin-top: 1.5rem; font: 500 clamp(1.1rem, 2.4vw, 1.6rem) var(--font); color: var(--pink-4); min-height: 1.6em; }
+.caret { display: inline-block; width: 2px; height: 1.1em; background: var(--pink-2); margin-left: 3px; vertical-align: -.15em; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.hero .lead { margin: 1rem 0 2rem; }
+.btns { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.orb-wrap { position: relative; aspect-ratio: 1; width: min(100%, 440px); justify-self: center; animation: float 7s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-18px); } }
+.orb {
+  position: absolute; inset: 18%; border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, var(--pink-3), var(--pink) 45%, #3a0620 85%);
+  box-shadow: 0 0 90px rgba(255, 20, 147, .55), inset -20px -20px 60px rgba(0, 0, 0, .55);
+}
+.ring { position: absolute; border-radius: 50%; border: 1px solid var(--line); }
+.r1 { inset: 4%; animation: spin 26s linear infinite; border-top-color: var(--pink-2); }
+.r2 { inset: -6%; animation: spin 40s linear infinite reverse; border-bottom-color: var(--pink-3); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: var(--pink-3); box-shadow: 0 0 16px var(--pink); animation: float 5s ease-in-out infinite; }
+.d1 { top: 12%; left: 20%; } .d2 { top: 70%; right: 8%; animation-delay: -2s; } .d3 { bottom: 10%; left: 28%; width: 6px; height: 6px; animation-delay: -3s; }
+
+/* ---------- Shared layout & cards ---------- */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+.cards { display: grid; gap: 16px; }
+.card {
+  background: linear-gradient(160deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .01)), var(--card);
+  border: 1px solid var(--line); border-radius: 20px; padding: 24px 26px;
+  backdrop-filter: blur(10px);
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+.card h3 { color: var(--pink-3); }
+.card:hover { transform: translateY(-5px); border-color: var(--pink-2); box-shadow: var(--glow); }
+
+/* ---------- Skills ---------- */
+.skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.group { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 28px; }
+.group h3 { font-size: 1.3rem; margin-bottom: 1.2rem; }
+.group ul { display: grid; gap: 10px; }
+.group li {
+  padding: 12px 16px; border-radius: 14px; background: var(--surface); border: 1px solid transparent;
+  color: #ddd; font-size: .95rem; transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.group li:hover { transform: translateY(-4px); border-color: var(--pink-2); box-shadow: var(--glow); }
+
+/* ---------- Projects ---------- */
+.projects { display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; }
+.project { grid-column: span 2; background: var(--card); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; transition: transform .3s, border-color .3s, box-shadow .3s; }
+.project.feature { grid-column: span 6; display: grid; grid-template-columns: 1.2fr 1fr; }
+.project:nth-child(2), .project:nth-child(3) { grid-column: span 3; }
+.project:hover { transform: translateY(-6px); border-color: var(--pink-2); box-shadow: var(--glow); }
+.thumb { min-height: 190px; height: 100%; }
+.feature .thumb { min-height: 300px; }
+.t1 { background: radial-gradient(circle at 30% 30%, var(--pink), transparent 60%), radial-gradient(circle at 80% 80%, #5a0a33, transparent 60%), var(--surface); }
+.t2 { background: linear-gradient(135deg, #2a0517, var(--pink) 160%); }
+.t3 { background: conic-gradient(from 200deg at 60% 40%, #150008, var(--pink-2), #150008 60%); }
+.t4 { background: radial-gradient(circle at 70% 30%, var(--pink-3), transparent 45%), linear-gradient(160deg, #1a0010, #3a0620); }
+.t5 { background: repeating-linear-gradient(120deg, #1a0010 0 18px, #2a0518 18px 36px), var(--surface); }
+.pbody { padding: 26px; display: flex; flex-direction: column; justify-content: center; gap: 10px; align-items: flex-start; }
+.pbody h3 { font-size: 1.4rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 10px; }
+.tags span { padding: 4px 12px; font-size: .78rem; border-radius: 999px; background: rgba(255, 20, 147, .1); color: var(--pink-3); border: 1px solid var(--line); }
+
+/* ---------- Timeline (vertical, glowing points) ---------- */
+.timeline { position: relative; padding-left: 40px; max-width: 760px; }
+.timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(var(--pink), var(--line)); }
+.timeline li { position: relative; padding-bottom: 36px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before {
+  content: ""; position: absolute; left: -40px; top: 6px; width: 15px; height: 15px; border-radius: 50%;
+  background: var(--pink-2); box-shadow: 0 0 0 5px rgba(255, 20, 147, .18), 0 0 22px var(--pink);
+}
+.timeline h3 { font-size: 1.5rem; }
+
+/* ---------- Philosophy ---------- */
+.quote-section { position: relative; overflow: hidden; padding: clamp(100px, 16vw, 200px) 0; text-align: center; border-block: 1px solid var(--line); }
+.glow { position: absolute; left: 50%; top: 50%; width: 70vw; height: 70vw; max-width: 800px; max-height: 800px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(255, 20, 147, .28), transparent 65%); filter: blur(30px); animation: pulse 8s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .55; transform: translate(-50%, -50%) scale(1.15); } }
+blockquote {
+  position: relative; font: 700 clamp(2rem, 6vw, 4.6rem)/1.1 var(--font); letter-spacing: -.03em;
+  background: linear-gradient(135deg, #fff, var(--pink-3) 50%, var(--pink));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ---------- Contact ---------- */
+.contact-grid { margin-top: 3rem; }
+form { display: grid; gap: 16px; }
+label { display: grid; gap: 6px; font-size: .88rem; color: var(--muted); }
+input, textarea {
+  width: 100%; padding: 14px 16px; border-radius: 14px; font: 1rem var(--body); color: var(--text);
+  background: var(--card); border: 1px solid var(--line); transition: border-color .25s, box-shadow .25s;
+}
+input:focus, textarea:focus { outline: none; border-color: var(--pink-2); box-shadow: 0 0 0 3px rgba(255, 20, 147, .2); }
+form .btn { justify-self: start; }
+#status { min-height: 1.4em; color: var(--pink-3); }
+.card.link { display: block; }
+
+/* ---------- Footer ---------- */
+footer { text-align: center; padding: 60px 4% 40px; border-top: 1px solid var(--line); display: grid; gap: 8px; justify-items: center; }
+footer .logo { font-size: 2rem; }
+footer small { color: var(--muted); margin-top: 14px; }
+
+/* ---------- Scroll reveal ---------- */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hero-grid, .two-col, .project.feature { grid-template-columns: 1fr; }
+  .orb-wrap { width: min(70%, 320px); order: -1; }
+  .hero { padding-bottom: 40px; }
+  .skill-groups { grid-template-columns: 1fr; }
+  .projects { grid-template-columns: 1fr; }
+  .project, .project:nth-child(2), .project:nth-child(3), .project.feature { grid-column: auto; }
+  .feature .thumb { min-height: 200px; }
+}
+@media (max-width: 760px) {
+  .burger { display: block; }
+  nav {
+    position: absolute; top: calc(100% + 10px); left: 0; right: 0; flex-direction: column; padding: 12px;
+    background: rgba(5, 5, 5, .94); backdrop-filter: blur(16px); border: 1px solid var(--line); border-radius: 24px;
+    opacity: 0; visibility: hidden; transform: translateY(-8px); transition: .3s;
+  }
+  nav.open { opacity: 1; visibility: visible; transform: none; }
+  nav a { padding: 14px 18px; }
+  .btn { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ---------- Merged contact panel ---------- */
+.contact-panel {
+  margin-top: 3rem; display: grid; grid-template-columns: 1.3fr 1fr; overflow: hidden;
+  background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.01)), var(--card);
+  border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 0 80px rgba(255,20,147,.08);
+}
+.contact-panel form { padding: clamp(24px, 4vw, 44px); }
+.contact-panel h3 { color: var(--pink-3); margin-bottom: .4rem; }
+.reach { padding: clamp(24px, 4vw, 44px); display: flex; flex-direction: column; gap: 6px; border-left: 1px solid var(--line); background: radial-gradient(circle at 100% 0, rgba(255,20,147,.16), transparent 60%); }
+.reach a { display: flex; flex-direction: column; padding: 14px 16px; border-radius: 14px; border: 1px solid transparent; transition: background .25s, border-color .25s, transform .25s; }
+.reach a:hover { background: rgba(255,20,147,.1); border-color: var(--pink-2); transform: translateX(4px); }
+.reach span { font: 500 1rem var(--font); }
+.reach em { font-style: normal; font-size: .88rem; color: var(--muted); overflow-wrap: anywhere; }
+@media (max-width: 900px) { .contact-panel { grid-template-columns: 1fr; } .reach { border-left: 0; border-top: 1px solid var(--line); } }
+
+/* ---------- Solo contact page ---------- */
+body { background: radial-gradient(ellipse at 80% 0, rgba(255,20,147,.18), transparent 55%), radial-gradient(ellipse at 0 100%, rgba(255,138,197,.08), transparent 50%), var(--bg); background-attachment: fixed; }
+.solo { min-height: 100svh; display: flex; align-items: center; padding: 120px 0 60px; }
+.solo h2 { background: linear-gradient(135deg,#fff,var(--pink-3) 60%,var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+</style>
+</head>
+<body>
+<header class="nav">
+  <a href="boky.html" class="logo">BOKY</a>
+  <a href="boky.html" class="btn btn-ghost sm">← Back to BOKY</a>
+</header>
+<main class="solo">
+    
+  <div class="container">
+    <h2>Let's create something</h2>
+    <p class="lead">Have an idea, project, collaboration, or technology concept? Let's build something meaningful.</p>
+    <div class="contact-panel">
+      <form id="form" novalidate>
+        <h3>Send a message</h3>
+        <label>Name<input type="text" name="name" autocomplete="name" required></label>
+        <label>Email<input type="email" name="email" autocomplete="email" required></label>
+        <label>Subject<input type="text" name="subject"></label>
+        <label>Message<textarea name="message" rows="5" required></textarea></label>
+        <button class="btn btn-primary" type="submit">Send Message</button>
+        <p id="status" role="status"></p>
+      </form>
+      <aside class="reach">
+        <h3>Or reach me directly</h3>
+        <a href="mailto:hello@example.com"><span>Email</span><em>hello@example.com</em></a>
+        <a href="https://facebook.com/" target="_blank" rel="noopener"><span>Facebook</span><em>facebook.com/yourname</em></a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener"><span>LinkedIn</span><em>linkedin.com/in/yourname</em></a>
+        <a href="https://github.com/" target="_blank" rel="noopener"><span>GitHub</span><em>github.com/yourname</em></a>
+      </aside>
+    </div>
+  </div>
+</main>
+<footer>
+  <strong class="logo">BOKY</strong>
+  <p>Technology. Creativity. Innovation.</p>
+  <small>© 2026 BOKY. All Rights Reserved.</small>
+</footer>
+<script>
+// ---------- Contact form ----------
+// OPTION A (default): opens the visitor's email app with the message filled in.
+// OPTION B: paste a Formspree URL below (https://formspree.io) to send in the background.
+const CONTACT_EMAIL = 'hello@example.com';   // <- your email
+const FORM_ENDPOINT = '';                      // <- e.g. 'https://formspree.io/f/xxxxxx'
+const form = document.getElementById('form');
+const status = document.getElementById('status');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const d = new FormData(form);
+  const name = d.get('name').trim(), email = d.get('email').trim(), msg = d.get('message').trim();
+  const subject = d.get('subject').trim() || 'New message from ' + name;
+  if (!name || !/^\S+@\S+\.\S+$/.test(email) || !msg) {
+    status.textContent = 'Please enter your name, a valid email, and a message.';
+    return;
+  }
+  if (FORM_ENDPOINT) {
+    try {
+      const r = await fetch(FORM_ENDPOINT, { method: 'POST', body: d, headers: { Accept: 'application/json' } });
+      if (!r.ok) throw 0;
+      status.textContent = 'Message sent. Thank you, I will reply soon.';
+      form.reset();
+    } catch { status.textContent = 'Something went wrong. Please email me directly.'; }
+  } else {
+    const body = encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')');
+    location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
+    status.textContent = 'Opening your email app…';
+  }
+});
+</script>
+</body>
+</html>

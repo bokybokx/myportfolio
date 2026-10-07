@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BOKY — Technology. Creativity. Innovation.</title>
+  <meta name="description" content="BOKY is a personal brand for a developer, educator, designer and technology enthusiast.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+/* ==========================================================
+   BOKY — style.css
+   Edit the palette in :root to re-theme the whole site.
+   ========================================================== */
+:root {
+  --bg: #050505;
+  --card: #0d0d0d;
+  --surface: #151515;
+  --pink: #ff1493;
+  --pink-2: #6E4E00;
+  --pink-3: #ff8ac5;
+  --pink-4: #ffd1e6;
+  --text: #ffffff;
+  --muted: #a0a0a0;
+  --line: rgba(255, 79, 163, .22);
+  --grad: linear-gradient(135deg, #ff1493, #ff8ac5);
+  --glow: 0 0 32px rgba(255, 20, 147, .35);
+  --font: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --body: "Inter", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--body); line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+:focus-visible { outline: 2px solid var(--pink-3); outline-offset: 3px; }
+
+.container { width: min(1160px, 92%); margin-inline: auto; }
+.section { padding: clamp(72px, 10vw, 130px) 0; }
+
+h1, h2, h3, .logo { font-family: var(--font); line-height: 1.1; }
+h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: -.02em; margin-bottom: 2rem; }
+h3 { font-size: 1.15rem; margin-bottom: .35rem; }
+p { color: var(--muted); max-width: 62ch; }
+p + p { margin-top: 1rem; }
+.lead { font-size: 1.1rem; }
+
+/* ---------- Navigation ---------- */
+.nav {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+  width: min(1160px, 94%); z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px; border-radius: 999px;
+  background: rgba(13, 13, 13, .55);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
+  transition: background .3s, box-shadow .3s;
+}
+.nav.scrolled { background: rgba(5, 5, 5, .8); box-shadow: 0 8px 40px rgba(255, 20, 147, .12); }
+.logo { font-weight: 700; font-size: 1.4rem; letter-spacing: .18em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+nav { display: flex; gap: 6px; }
+nav a {
+  position: relative; padding: 8px 14px; font-size: .92rem; color: var(--muted);
+  border-radius: 999px; transition: color .25s, background .25s;
+}
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--text); background: rgba(255, 20, 147, .16); box-shadow: inset 0 0 0 1px var(--line); }
+.burger { display: none; background: none; border: 0; width: 44px; height: 44px; cursor: pointer; position: relative; }
+.burger span { position: absolute; left: 10px; right: 10px; height: 2px; background: var(--pink-3); transition: transform .3s, top .3s; }
+.burger span:first-child { top: 17px; } .burger span:last-child { top: 25px; }
+.burger[aria-expanded="true"] span:first-child { top: 21px; transform: rotate(45deg); }
+.burger[aria-expanded="true"] span:last-child { top: 21px; transform: rotate(-45deg); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 0 28px; border-radius: 999px; border: 1px solid transparent;
+  font: 500 .98rem var(--font); cursor: pointer; transition: transform .25s, box-shadow .25s, background .25s, border-color .25s;
+}
+.btn-primary { background: var(--grad); color: #080808; box-shadow: var(--glow); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 48px rgba(255, 20, 147, .55); }
+.btn-ghost { border-color: var(--line); color: var(--pink-4); background: rgba(255, 255, 255, .02); }
+.btn-ghost:hover { border-color: var(--pink-2); background: rgba(255, 20, 147, .12); transform: translateY(-3px); }
+.btn.sm { min-height: 40px; padding: 0 20px; font-size: .88rem; }
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 100svh; display: flex; align-items: center; padding-top: 90px; position: relative;
+  background:
+    radial-gradient(ellipse at 75% 40%, rgba(255, 20, 147, .20), transparent 55%),
+    radial-gradient(ellipse at 10% 90%, rgba(255, 138, 197, .08), transparent 50%),
+    var(--bg);
+  background-size: 140% 140%; animation: bgshift 18s ease-in-out infinite alternate;
+}
+@keyframes bgshift { to { background-position: 30% 20%; } }
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; }
+.wordmark {
+  font-size: clamp(5rem, 17vw, 12.5rem); font-weight: 700; letter-spacing: -.04em; line-height: .9;
+  background: linear-gradient(135deg, #fff 0%, var(--pink-3) 45%, var(--pink) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 40px rgba(255, 20, 147, .35));
+}
+.subtitle { margin-top: 1.5rem; font: 500 clamp(1.1rem, 2.4vw, 1.6rem) var(--font); color: var(--pink-4); min-height: 1.6em; }
+.caret { display: inline-block; width: 2px; height: 1.1em; background: var(--pink-2); margin-left: 3px; vertical-align: -.15em; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.hero .lead { margin: 1rem 0 2rem; }
+.btns { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.orb-wrap { position: relative; aspect-ratio: 1; width: min(100%, 440px); justify-self: center; animation: float 7s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-18px); } }
+.orb {
+  position: absolute; inset: 18%; border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, var(--pink-3), var(--pink) 45%, #3a0620 85%);
+  box-shadow: 0 0 90px rgba(255, 20, 147, .55), inset -20px -20px 60px rgba(0, 0, 0, .55);
+}
+.ring { position: absolute; border-radius: 50%; border: 1px solid var(--line); }
+.r1 { inset: 4%; animation: spin 26s linear infinite; border-top-color: var(--pink-2); }
+.r2 { inset: -6%; animation: spin 40s linear infinite reverse; border-bottom-color: var(--pink-3); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: var(--pink-3); box-shadow: 0 0 16px var(--pink); animation: float 5s ease-in-out infinite; }
+.d1 { top: 12%; left: 20%; } .d2 { top: 70%; right: 8%; animation-delay: -2s; } .d3 { bottom: 10%; left: 28%; width: 6px; height: 6px; animation-delay: -3s; }
+
+/* ---------- Shared layout & cards ---------- */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+.cards { display: grid; gap: 16px; }
+.card {
+  background: linear-gradient(160deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .01)), var(--card);
+  border: 1px solid var(--line); border-radius: 20px; padding: 24px 26px;
+  backdrop-filter: blur(10px);
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+.card h3 { color: var(--pink-3); }
+.card:hover { transform: translateY(-5px); border-color: var(--pink-2); box-shadow: var(--glow); }
+
+/* ---------- Skills ---------- */
+.skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.group { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 28px; }
+.group h3 { font-size: 1.3rem; margin-bottom: 1.2rem; }
+.group ul { display: grid; gap: 10px; }
+.group li {
+  padding: 12px 16px; border-radius: 14px; background: var(--surface); border: 1px solid transparent;
+  color: #ddd; font-size: .95rem; transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.group li:hover { transform: translateY(-4px); border-color: var(--pink-2); box-shadow: var(--glow); }
+
+/* ---------- Projects ---------- */
+.projects { display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; }
+.project { grid-column: span 2; background: var(--card); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; transition: transform .3s, border-color .3s, box-shadow .3s; }
+.project.feature { grid-column: span 6; display: grid; grid-template-columns: 1.2fr 1fr; }
+.project:nth-child(2), .project:nth-child(3) { grid-column: span 3; }
+.project:hover { transform: translateY(-6px); border-color: var(--pink-2); box-shadow: var(--glow); }
+.thumb { min-height: 190px; height: 100%; }
+.feature .thumb { min-height: 300px; }
+.t1 { background: radial-gradient(circle at 30% 30%, var(--pink), transparent 60%), radial-gradient(circle at 80% 80%, #5a0a33, transparent 60%), var(--surface); }
+.t2 { background: linear-gradient(135deg, #2a0517, var(--pink) 160%); }
+.t3 { background: conic-gradient(from 200deg at 60% 40%, #150008, var(--pink-2), #150008 60%); }
+.t4 { background: radial-gradient(circle at 70% 30%, var(--pink-3), transparent 45%), linear-gradient(160deg, #1a0010, #3a0620); }
+.t5 { background: repeating-linear-gradient(120deg, #1a0010 0 18px, #2a0518 18px 36px), var(--surface); }
+.pbody { padding: 26px; display: flex; flex-direction: column; justify-content: center; gap: 10px; align-items: flex-start; }
+.pbody h3 { font-size: 1.4rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 10px; }
+.tags span { padding: 4px 12px; font-size: .78rem; border-radius: 999px; background: rgba(255, 20, 147, .1); color: var(--pink-3); border: 1px solid var(--line); }
+
+/* ---------- Timeline (vertical, glowing points) ---------- */
+.timeline { position: relative; padding-left: 40px; max-width: 760px; }
+.timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(var(--pink), var(--line)); }
+.timeline li { position: relative; padding-bottom: 36px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before {
+  content: ""; position: absolute; left: -40px; top: 6px; width: 15px; height: 15px; border-radius: 50%;
+  background: var(--pink-2); box-shadow: 0 0 0 5px rgba(255, 20, 147, .18), 0 0 22px var(--pink);
+}
+.timeline h3 { font-size: 1.5rem; }
+
+/* ---------- Philosophy ---------- */
+.quote-section { position: relative; overflow: hidden; padding: clamp(100px, 16vw, 200px) 0; text-align: center; border-block: 1px solid var(--line); }
+.glow { position: absolute; left: 50%; top: 50%; width: 70vw; height: 70vw; max-width: 800px; max-height: 800px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(255, 20, 147, .28), transparent 65%); filter: blur(30px); animation: pulse 8s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .55; transform: translate(-50%, -50%) scale(1.15); } }
+blockquote {
+  position: relative; font: 700 clamp(2rem, 6vw, 4.6rem)/1.1 var(--font); letter-spacing: -.03em;
+  background: linear-gradient(135deg, #fff, var(--pink-3) 50%, var(--pink));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ---------- Contact ---------- */
+.contact-grid { margin-top: 3rem; }
+form { display: grid; gap: 16px; }
+label { display: grid; gap: 6px; font-size: .88rem; color: var(--muted); }
+input, textarea {
+  width: 100%; padding: 14px 16px; border-radius: 14px; font: 1rem var(--body); color: var(--text);
+  background: var(--card); border: 1px solid var(--line); transition: border-color .25s, box-shadow .25s;
+}
+input:focus, textarea:focus { outline: none; border-color: var(--pink-2); box-shadow: 0 0 0 3px rgba(255, 20, 147, .2); }
+form .btn { justify-self: start; }
+#status { min-height: 1.4em; color: var(--pink-3); }
+.card.link { display: block; }
+
+/* ---------- Footer ---------- */
+footer { text-align: center; padding: 60px 4% 40px; border-top: 1px solid var(--line); display: grid; gap: 8px; justify-items: center; }
+footer .logo { font-size: 2rem; }
+footer small { color: var(--muted); margin-top: 14px; }
+
+/* ---------- Scroll reveal ---------- */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hero-grid, .two-col, .project.feature { grid-template-columns: 1fr; }
+  .orb-wrap { width: min(70%, 320px); order: -1; }
+  .hero { padding-bottom: 40px; }
+  .skill-groups { grid-template-columns: 1fr; }
+  .projects { grid-template-columns: 1fr; }
+  .project, .project:nth-child(2), .project:nth-child(3), .project.feature { grid-column: auto; }
+  .feature .thumb { min-height: 200px; }
+}
+@media (max-width: 760px) {
+  .burger { display: block; }
+  nav {
+    position: absolute; top: calc(100% + 10px); left: 0; right: 0; flex-direction: column; padding: 12px;
+    background: rgba(5, 5, 5, .94); backdrop-filter: blur(16px); border: 1px solid var(--line); border-radius: 24px;
+    opacity: 0; visibility: hidden; transform: translateY(-8px); transition: .3s;
+  }
+  nav.open { opacity: 1; visibility: visible; transform: none; }
+  nav a { padding: 14px 18px; }
+  .btn { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header class="nav" id="nav">
+  <a href="#home" class="logo"><img src="images/logo.png" alt="Logo" width =100></a>
+  <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  <nav id="menu" aria-label="Main">
+    <a href="#home">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="container hero-grid">
+  <img src="images/banner.png" alt="Logo">
+  
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container two-col reveal">
+    <div>
+      <h2>About BOKY</h2>
+      <p>BOKY is where technology meets creativity. I build for the web, design interfaces people enjoy using, and teach others to do the same.</p>
+      <p>My work spans web development, UI/UX, education, and digital transformation. I like turning messy problems into clear, creative solutions, and exploring new ideas that move people and organizations forward.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><h3>Developer</h3><p>Web &amp; software development</p></article>
+      <article class="card"><h3>Educator</h3><p>Technology &amp; digital learning</p></article>
+      <article class="card"><h3>Innovator</h3><p>Creative technology solutions</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="container reveal">
+    <h2>Skills</h2>
+    <div class="skill-groups">
+      <div class="group"><h3>Development</h3><ul>
+        <li>&lt;/&gt; HTML</li><li>{ } CSS</li><li>JS JavaScript</li><li>⚛ React</li><li>⬡ Node.js</li><li>PHP PHP</li><li>⛁ MySQL</li></ul></div>
+      <div class="group"><h3>Design</h3><ul>
+        <li>◐ UI/UX</li><li>◇ Figma</li><li>✎ Graphic Design</li><li>▢ Prototyping</li></ul></div>
+      <div class="group"><h3>Technology</h3><ul>
+        <li>✦ AI</li><li>∿ Machine Learning</li><li>⛨ Cybersecurity</li><li>⛓ Blockchain</li><li>☁ Cloud Technology</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="container reveal">
+    <h2>Selected Projects</h2>
+    <div class="projects">
+      <article class="project feature"><div class="thumb t1"></div><div class="pbody"><h3>BOKY Academy</h3><p>Technology learning and educational resources.</p><div class="tags"><span>HTML</span><span>JavaScript</span><span>E-Learning</span></div><a href="#" class="btn btn-ghost sm">View Project</a></div></article>
+      <article class="project"><div class="thumb t2"></div><div class="pbody"><h3>Smart Campus</h3><p>Digital solutions for campus operations.</p><div class="tags"><span>Node.js</span><span>MySQL</span></div><a href="#" class="btn btn-ghost sm">View Project</a></div></article>
+      <article class="project"><div class="thumb t3"></div><div class="pbody"><h3>AR Tourism</h3><p>Augmented reality experience for tourism.</p><div class="tags"><span>AR</span><span>JavaScript</span></div><a href="#" class="btn btn-ghost sm">View Project</a></div></article>
+      <article class="project"><div class="thumb t4"></div><div class="pbody"><h3>AI &amp; Innovation Projects</h3><p>Artificial intelligence and computer vision applications.</p><div class="tags"><span>AI</span><span>Computer Vision</span></div><a href="#" class="btn btn-ghost sm">View Project</a></div></article>
+      <article class="project"><div class="thumb t5"></div><div class="pbody"><h3>E-Commerce Solutions</h3><p>Modern online business and digital commerce projects.</p><div class="tags"><span>PHP</span><span>MySQL</span><span>React</span></div><a href="#" class="btn btn-ghost sm">View Project</a></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="container reveal">
+    <h2>Experience</h2>
+    <ol class="timeline">
+      <li><h3>Education</h3><p>Technology and continuous learning</p></li>
+      <li><h3>Teaching</h3><p>Helping students develop technology skills</p></li>
+      <li><h3>Development</h3><p>Building web and software applications</p></li>
+      <li><h3>Innovation</h3><p>Exploring AI, emerging technologies, and digital solutions</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="quote-section">
+  <div class="glow" aria-hidden="true"></div>
+  <blockquote class="container reveal">“Technology rooted in creativity, purpose, and innovation.”</blockquote>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container reveal">
+    <h2>Let's create something</h2>
+    <p class="lead">Have an idea, project, collaboration, or technology concept? Let's build something meaningful.</p>
+    <div class="two-col contact-grid">
+      <form id="form" novalidate>
+        <label>Name<input type="text" name="name" required></label>
+        <label>Email<input type="email" name="email" required></label>
+        <label>Subject<input type="text" name="subject"></label>
+        <label>Message<textarea name="message" rows="5" required></textarea></label>
+        <button class="btn btn-primary" type="submit">Send Message</button>
+        <p id="status" role="status"></p>
+      </form>
+      <div class="cards">
+        <a class="card link" href="mailto:hello@example.com"><h3>Email</h3><p>hello@example.com</p></a>
+        <a class="card link" href="https://facebook.com/" target="_blank" rel="noopener"><h3>Facebook</h3><p>facebook.com/yourname</p></a>
+        <a class="card link" href="https://linkedin.com/" target="_blank" rel="noopener"><h3>LinkedIn</h3><p>linkedin.com/in/yourname</p></a>
+        <a class="card link" href="https://github.com/" target="_blank" rel="noopener"><h3>GitHub</h3><p>github.com/yourname</p></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <strong class="logo">BOKY</strong>
+  <p>Technology. Creativity. Innovation.</p>
+  <small>© 2026 BOKY. All Rights Reserved.</small>
+</footer>
+
+<script>
+/* ==========================================================
+   BOKY — script.js (vanilla JS)
+   ========================================================== */
+
+// ---------- Typing animation for hero subtitle ----------
+(function typing() {
+  const el = document.getElementById('typed');
+  const text = 'Technology. Creativity. Innovation.';
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = text; return; }
+  let i = 0;
+  (function tick() {
+    el.textContent = text.slice(0, ++i);
+    if (i < text.length) setTimeout(tick, 70);
+  })();
+})();
+
+// ---------- Mobile menu ----------
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+burger.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menu.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}));
+
+// ---------- Nav background on scroll ----------
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), { passive: true });
+
+// ---------- Active nav indicator ----------
+const links = [...menu.querySelectorAll('a')];
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+links.forEach(l => { const s = document.querySelector(l.getAttribute('href')); if (s) spy.observe(s); });
+
+// ---------- Fade-in on scroll ----------
+const reveal = new IntersectionObserver((entries, obs) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => reveal.observe(el));
+
+// ---------- Contact form (front-end only) ----------
+// Replace this with a real endpoint (Formspree, EmailJS, your own API) when ready.
+const form = document.getElementById('form');
+const status = document.getElementById('status');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const d = new FormData(form);
+  if (!d.get('name').trim() || !/^\S+@\S+\.\S+$/.test(d.get('email')) || !d.get('message').trim()) {
+    status.textContent = 'Please enter your name, a valid email, and a message.';
+    return;
+  }
+  status.textContent = 'Message sent. Thank you, I will reply soon.';
+  form.reset();
+});
+
+</script>
+</body>
+</html>

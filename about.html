@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Lenuel S. Betita</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e91e63;
+        }
+
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #e91e63;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 30px;
+        }
+
+        .about {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .profile {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #e91e63;
+            box-shadow: 0 10px 25px rgba(0,0,0,.15);
+        }
+
+        .about-text {
+            max-width: 600px;
+        }
+
+        .about-text h1 {
+            font-size: 45px;
+            color: #222;
+        }
+
+        .about-text h2 {
+            color: #e91e63;
+            margin: 10px 0 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: #e91e63;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background: #c2185b;
+            transform: translateY(-3px);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .skills,
+        .hobbies {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,.08);
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #e91e63;
+            margin-bottom: 10px;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.08);
+        }
+
+        .contact-box p {
+            margin: 12px 0;
+        }
+
+        .contact-box a {
+            color: #e91e63;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-text h1 {
+                font-size: 35px;
+            }
+
+            .skills,
+            .hobbies {
+                grid-template-columns: 1fr;
+            }
+
+            .profile {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">About Me</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About Me</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+
+    <!-- ABOUT ME -->
+    <section class="about" id="home">
+
+        <img src="images/pp.jpg"
+             alt="Lenuel S. Betita"
+             class="profile">
+
+        <div class="about-text" id="about">
+
+            <h1>Lenuel S. Betita</h1>
+
+            <h2>BSIT Program Head / IT Educator</h2>
+
+            <p>
+                Hello! I am Lenuel S. Betita, an IT educator and technology
+                professional passionate about web development, artificial
+                intelligence, digital innovation, and education.
+            </p>
+
+            <p>
+                I enjoy creating technology-based solutions, teaching students,
+                exploring emerging technologies, and developing innovative
+                projects that solve real-world problems.
+            </p>
+
+            <a href="#contact" class="btn">Contact Me</a>
+
+        </div>
+    </section>
+
+
+    <!-- SKILLS -->
+    <section>
+
+        <h2 class="section-title">My Skills</h2>
+
+        <div class="skills">
+
+            <div class="card">
+                <h3>Web Development</h3>
+                <p>Creating modern and responsive websites.</p>
+            </div>
+
+            <div class="card">
+                <h3>UI/UX Design</h3>
+                <p>Designing simple and user-friendly interfaces.</p>
+            </div>
+
+            <div class="card">
+                <h3>Artificial Intelligence</h3>
+                <p>Exploring AI and intelligent technology solutions.</p>
+            </div>
+
+            <div class="card">
+                <h3>Database Management</h3>
+                <p>Designing and managing structured data systems.</p>
+            </div>
+
+            <div class="card">
+                <h3>Software Development</h3>
+                <p>Developing useful software and digital applications.</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- HOBBIES -->
+    <section>
+
+        <h2 class="section-title">Hobbies & Interests</h2>
+
+        <div class="hobbies">
+
+            <div class="card">
+                <h3>Technology</h3>
+                <p>
+                    Exploring new technologies, programming tools,
+                    and digital solutions.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Teaching</h3>
+                <p>
+                    Sharing knowledge and helping students improve
+                    their technical skills.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Innovation</h3>
+                <p>
+                    Creating technology-based ideas and solutions
+                    for real-world problems.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+
+        <h2 class="section-title">Contact Me</h2>
+
+        <div class="contact-box">
+
+            <p>
+                <strong>Email:</strong>
+                <a href="mailto:lenuelbetita@lccbonline.edu.ph">
+                    lenuelbetita@lccbonline.edu.ph
+                </a>
+            </p>
+
+            <p>
+                <strong>Facebook:</strong>
+                <a href="#">Facebook Profile</a>
+            </p>
+
+            <p>
+                <strong>LinkedIn:</strong>
+                <a href="#">LinkedIn Profile</a>
+            </p>
+
+            <a href="mailto:lenuelbetita@lccbonline.edu.ph"
+               class="btn">
+                Send Me an Email
+            </a>
+
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 My Personal Website</p>
+    </footer>
+
+</body>
+</html>
